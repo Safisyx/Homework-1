@@ -37,20 +37,58 @@ def count_email(contacts, to_find)
   end
 end
 
+#Helper methods
+
+def divisor
+  puts "----------------------------------------------------"
+end
+
+def list_contacts(contacts)
+  contacts.each do |contact|
+    puts "-" + contact[:name]
+    puts " " + contact[:phone]
+    puts " " + contact[:email]
+    puts
+  end
+end
+
+
+#Main program
 
 contacts = read_contacts
 new_shape = change_shape(contacts)
-print new_shape
 puts
+divisor
+puts "List of contacts:"
+new_shape.each do |contact|
+  contact.each { |key, value|
+    puts " -#{key}: #{value}"
+  }
+end
+divisor
+puts
+divisor
+
 contacts_filter_by_phone = filter_phone(contacts, "+1")
-print contacts_filter_by_phone
+puts 'Contacts with phone number containing "+1":'
+list_contacts(contacts_filter_by_phone)
+divisor
 puts
+divisor
+
 contacts_filter_by_email = filter_email(contacts, ".org")
-print contacts_filter_by_email
+puts 'Contacts with email containing ".org":'
+list_contacts(contacts_filter_by_email)
+divisor
 puts
+divisor
+
 count_by_phone = count_phone(contacts, "+1")
-print count_by_phone
+puts "Number of contacts with phone containing \"+1\": #{count_by_phone}"
+divisor
 puts
+divisor
+
 count_by_email = count_email(contacts, ".org")
-print count_by_phone
-puts
+puts "Number of contacts with email containing \".org\": #{count_by_email}"
+divisor
